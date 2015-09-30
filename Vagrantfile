@@ -3,6 +3,7 @@
 
 user = 'rocky'
 vagrant_root = '/vagrant'
+guest_home = "/home/#{user}"
 
 #
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
@@ -45,6 +46,8 @@ Vagrant.configure(2) do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   config.vm.synced_folder ".", vagrant_root
+  # TODO: uncomment after provision
+  # config.vm.synced_folder "guest_home", guest_home, owner: user
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -102,6 +105,7 @@ Vagrant.configure(2) do |config|
     ansible.playbook = "ansible.yaml"
     ansible.inventory_path = "inventory/hosts.ini"
     ansible.sudo = true
+    ansible.verbose = 'vvv'
     ansible.extra_vars = {
       user: user,
       vagrant_root: vagrant_root,
