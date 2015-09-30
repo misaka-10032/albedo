@@ -1,0 +1,14 @@
+---
+
+apt_pkgs:
+  - zsh
+  - git
+  - tmux
+  - build-essential
+  - cmake
+  - python-dev
+  - python-pip
+
+python_pkgs:
+  - virtualenv
+  - ipython

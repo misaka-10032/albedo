@@ -1,0 +1,12 @@
+---
+
+apt_pkgs:
+  - libatlas-base-dev
+  - gfortran
+
+python_pkgs:
+  - numpy
+  - scipy
+  - scikit-learn
+  - matplotlib
+  - pandas

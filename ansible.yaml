@@ -1,0 +1,9 @@
+---
+- hosts: all
+  vars:
+    user: "{{ user }}"
+    vagrant_root: "{{ vagrant_root }}"
+
+  roles:
+    - common
+    - vagrant

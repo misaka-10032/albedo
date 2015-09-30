@@ -1,0 +1,13 @@
+---
+
+- name: Reset authorized_keys.
+  command: rm -f ~{{ user }}/.ssh/authorized_keys
+  sudo: yes
+
+- name: Add authorized_key.
+  command: sh -c "cat ~{{ user }}/.ssh/id_rsa.pub >> ~{{ user }}/.ssh/authorized_keys"
+  sudo_user: "{{ user }}"
+
+- name: Copy private key out.
+  command: cp ~{{ user }}/.ssh/id_rsa {{ vagrant_root }}/private_key
+  sudo: yes

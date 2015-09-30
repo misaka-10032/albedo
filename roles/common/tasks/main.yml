@@ -1,0 +1,16 @@
+---
+
+- name: Create user.
+  user: name={{ user }} groups=admin,sudo shell="/usr/bin/zsh" generate_ssh_key=yes ssh_key_file=.ssh/id_rsa
+  tags: ['user']
+
+- name: Update apt cache, equivalent of "apt-get update".
+  apt: update_cache=yes
+
+- name: Install apt packages.
+  apt: pkg={{ item }} state=present
+  with_items: apt_pkgs
+
+- name: Install python packages.
+  pip: name={{ item }}
+  with_items: python_pkgs
