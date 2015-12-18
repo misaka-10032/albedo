@@ -7,6 +7,4 @@
   roles:
     - common
     - vagrant
-    - ops
     - research
-    - data

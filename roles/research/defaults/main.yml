@@ -4,3 +4,10 @@ apt_pkgs:
   - openmpi-bin
   - openmpi-doc
   - libopenmpi-dev
+  - libatlas-base-dev
+  - gfortran
+  - swig
+
+python_pkgs:
+  - numpy
+  - scipy

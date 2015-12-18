@@ -3,7 +3,7 @@
 
 user = 'rocky'
 vagrant_root = '/vagrant'
-guest_home = "/home/#{user}"
+guest_devbox = "/home/#{user}/Developer"
 
 #
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
@@ -31,6 +31,8 @@ Vagrant.configure(2) do |config|
   #config.vm.network "forwarded_port", guest: 80, host: 8080
   #config.vm.network "forwarded_port", guest: 443, host: 8443
   config.vm.network "forwarded_port", guest: 22, host: 5222
+  config.vm.network "forwarded_port", guest: 50070, host: 51070
+  config.vm.network "forwarded_port", guest: 8088, host:8188
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -46,8 +48,10 @@ Vagrant.configure(2) do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   config.vm.synced_folder ".", vagrant_root
-  # TODO: uncomment after provision
-  # config.vm.synced_folder "guest_home", guest_home, owner: user
+  #
+  # Don't do this because fs on mac doesn't support mmap
+  # And a lib we use needs that feature
+  #config.vm.synced_folder "Developer", guest_devbox, create: true, owner: user
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -58,7 +62,7 @@ Vagrant.configure(2) do |config|
     # vb.gui = true
 
     # Customize
-    vb.customize ["modifyvm", :id, "--memory", "2048", "--cpus", "2"]
+    vb.customize ["modifyvm", :id, "--memory", "4096", "--cpus", "4"]
 
     # # Customize the amount of memory on the VM:
     # vb.memory = "1024"
